@@ -137,10 +137,12 @@
   }
 }
 
+
+
 .homeMap {
   width: 80%;
   max-width: 800px;
-  border: 1px solid #eaeaea;
+  border: 2px solid #eaeaea;
   border-radius: 10px;
   height: 20rem;
 

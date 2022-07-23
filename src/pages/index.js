@@ -11,7 +11,7 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Jääpanda jäätelökioski</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./pandafav.ico" />
       </Head>
 
       <main className={styles.main}>
@@ -29,7 +29,7 @@ export default function Home() {
               />
               <Marker position={DEFAULT_CENTER}>
                 <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
+                  Jääpanda <br /> jäätelökioski
                 </Popup>
               </Marker>
             </>

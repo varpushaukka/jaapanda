@@ -1,35 +1,31 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import Map from '../components/Map';
+import Map from "../components/Map";
 
-import styles from '../../styles/Home.module.css';
+import styles from "../../styles/Home.module.css";
 
-const DEFAULT_CENTER = [38.907132, -77.036546]
+const DEFAULT_CENTER = [60.23165, 25.03633];
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Jääpanda jäätelökioski</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Next.js Leaflet Starter
-        </h1>
+        <h1 className={styles.title}>Jääpanda</h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        <p className={styles.kuvaus}>Liikkuva jäätelökioski</p>
+        <p className={styles.aukiolo}>Auki nyt! Katso sijainti kartalta</p>
 
-        <Map className={styles.homeMap} center={DEFAULT_CENTER} zoom={12}>
+        <Map className={styles.homeMap} center={DEFAULT_CENTER} zoom={15}>
           {({ TileLayer, Marker, Popup }) => (
             <>
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               />
               <Marker position={DEFAULT_CENTER}>
                 <Popup>
@@ -40,43 +36,10 @@ export default function Home() {
           )}
         </Map>
 
-        <p className={styles.description}>
-          <code className={styles.code}>yarn create next-app -e https://github.com/colbyfayock/next-leaflet-starter</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://github.com/colbyfayock/next-leaflet-starter" className={styles.card}>
-            <h3>GitHub &rarr;</h3>
-            <p>See the code in action.</p>
-          </a>
-
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Next.js &rarr;</h3>
-            <p>Getting started with Next.js</p>
-          </a>
-
-          <a href="https://leafletjs.com/" className={styles.card}>
-            <h3>Leaflet &rarr;</h3>
-            <p>Mapping features and APIs.</p>
-          </a>
-
-          <a href="https://react-leaflet.js.org/" className={styles.card}>
-            <h3>React Leaflet &rarr;</h3>
-            <p>Native Leaflet components in React</p>
-          </a>
-        </div>
+        <p className={styles.kuvaus}>Jääpanda on Liekin oma jäätelöyritys.</p>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <footer className={styles.footer}> moi </footer>
     </div>
-  )
+  );
 }

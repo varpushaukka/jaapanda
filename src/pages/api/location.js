@@ -17,7 +17,7 @@ const updateGist = (con) => {
 };
 
 export default async function handler(req, res) {
-  const { body } = req;
-  //updateGist(body);
-  return res.send(body);
+  const { body, XTelegramBotApiSecretToken } = req;
+  if (XTelegramBotApiSecretToken === BOT_WEBHOOK_TOKEN) updateGist(body);
+  return res.send("ok");
 }

@@ -18,7 +18,6 @@ const updateGist = (con) => {
 
 export default async function handler(req, res) {
   const { body, query } = req;
-  if (query.secret_token === process.env.BOT_WEBHOOK_TOKEN)
-    updateGist(body.update);
+  if (query.secret_token === process.env.BOT_WEBHOOK_TOKEN) updateGist(body);
   return res.send("ok");
 }

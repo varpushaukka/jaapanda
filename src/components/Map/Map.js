@@ -1,20 +1,20 @@
-import { useEffect } from 'react';
-import L from 'leaflet';
-import * as ReactLeaflet from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import { useEffect } from "react";
+import L from "leaflet";
+import * as ReactLeaflet from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
-import styles from './Map.module.css';
+import styles from "./Map.module.css";
 
-import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
-import iconUrl from 'leaflet/dist/images/marker-icon.png';
-import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
+import iconUrl from "leaflet/dist/images/marker-icon.png";
+import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 
 const { MapContainer, MapConsumer } = ReactLeaflet;
 
 const Map = ({ children, className, ...rest }) => {
   let mapClassName = styles.map;
 
-  if ( className ) {
+  if (className) {
     mapClassName = `${mapClassName} ${className}`;
   }
 
@@ -32,11 +32,9 @@ const Map = ({ children, className, ...rest }) => {
 
   return (
     <MapContainer className={mapClassName} {...rest}>
-      <MapConsumer>
-        {(map) => children(ReactLeaflet, map)}
-      </MapConsumer>
+      <MapConsumer>{(map) => children(ReactLeaflet, map)}</MapConsumer>
     </MapContainer>
-  )
-}
+  );
+};
 
 export default Map;

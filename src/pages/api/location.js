@@ -18,6 +18,6 @@ const updateGist = (con) => {
 
 export default async function handler(req, res) {
   const { body } = req;
-  updateGist(body);
+  //updateGist(body);
   return res.send(body);
 }

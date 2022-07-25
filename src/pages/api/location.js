@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         location,
       } = body.message;
       const message = `sijaintisi on *"${
-        location.longitude + " " + location.latitude
+        location.longitude + ", " + location.latitude
       }"*Jääpanda on nyt auki!`;
       updateGist(
         true,

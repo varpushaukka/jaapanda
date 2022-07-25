@@ -17,7 +17,6 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => {
         setData(JSON.parse(data.files["jaapanda.json"].content));
-        console.log(data);
         setLoading(false);
       });
   }, []);
@@ -37,28 +36,36 @@ export default function Home() {
 
         <p className={styles.kuvaus}>Liikkuva jäätelökioski</p>
         {data.open ? (
-          <p className={styles.auki}>Auki nyt! Katso sijainti kartalta</p>
+          <>
+            <p className={styles.auki}>Auki nyt! Katso sijainti kartalta</p>
+            <Map
+              className={styles.homeMap}
+              center={[data.lat, data.lon]}
+              zoom={15}
+            >
+              {({ TileLayer, Marker, Popup }) => (
+                <>
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                  />
+                  <Marker position={[data.lat, data.lon]}>
+                    <Popup>
+                      Jääpanda <br /> jäätelökioski
+                    </Popup>
+                  </Marker>
+                </>
+              )}
+            </Map>
+          </>
         ) : (
           <p className={styles.kiinni}>Jäätelökioski on nyt kiinni</p>
         )}
 
-        <Map className={styles.homeMap} center={[data.lat, data.lon]} zoom={15}>
-          {({ TileLayer, Marker, Popup }) => (
-            <>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              />
-              <Marker position={[data.lat, data.lon]}>
-                <Popup>
-                  Jääpanda <br /> jäätelökioski
-                </Popup>
-              </Marker>
-            </>
-          )}
-        </Map>
-
-        <p className={styles.kuvaus}>Jääpanda on Liekin oma jäätelöyritys.</p>
+        <p className={styles.kuvaus}>
+          Jääpanda on Liekin oma jäätelöyritys. Tämä sivu näyttää aukiolotiedon
+          ja sijainnin kartalla jos kioski on auki.
+        </p>
       </main>
 
       <footer className={styles.footer}> moi </footer>

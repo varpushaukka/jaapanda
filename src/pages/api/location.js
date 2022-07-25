@@ -30,13 +30,16 @@ export default async function handler(req, res) {
   try {
     const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
     const { body, query } = req;
-    if (body.message.text.toLowerCase() == "kiinni") {
+    if (body.message.text) {
       const {
         chat: { id },
+        text,
       } = body.message;
-      //updateGist(false, query.secret_token)
-      const message = `[Jääpanda](https://xn--jpanda-buaa.fi/) on nyt kiinni. Lähetä sijainti avataksesi sen uudelleen.`;
-      await bot.sendMessage(id, message, { parse_mode: "Markdown" });
+      if (text.toLowerCase() === "kiinni") {
+        updateGist(false, query.secret_token);
+        const message = `[Jääpanda](https://xn--jpanda-buaa.fi/) on nyt kiinni. Lähetä sijainti avataksesi sen uudelleen.`;
+        await bot.sendMessage(id, message, { parse_mode: "Markdown" });
+      }
     } else if (body.message.location) {
       const {
         chat: { id },
@@ -45,7 +48,11 @@ export default async function handler(req, res) {
       const message = `sijaintisi on *"${
         (location.longitude, location.latitude)
       }"*Jääpanda on nyt auki!`;
-      //updateGist(true, [location.latitude, location.longitude], query.secret_token);
+      updateGist(
+        true,
+        [location.latitude, location.longitude],
+        query.secret_token
+      );
       await bot.sendMessage(id, message, { parse_mode: "Markdown" });
     }
   } catch (error) {

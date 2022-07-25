@@ -3,7 +3,7 @@ import { Octokit } from "@octokit/core";
 process.env.NTBA_FIX_319 = "test";
 const TelegramBot = require("node-telegram-bot-api");
 
-const updateGist = (isOpen, location = [60.23165, 25.03632], token) => {
+const updateGist = (isOpen, location, token) => {
   const content = { open: isOpen, lat: location[0], lon: location[1] };
   if (token === process.env.BOT_WEBHOOK_TOKEN) {
     updateGistCall(JSON.stringify(content));
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         text,
       } = body.message;
       if (text.toLowerCase() === "kiinni") {
-        updateGist(false, query.secret_token);
+        updateGist(false, [60.23165, 25.03632], query.secret_token);
         const message = `[Jääpanda](https://xn--jpanda-buaa.fi/) on nyt kiinni. Lähetä sijainti avataksesi sen uudelleen.`;
         await bot.sendMessage(id, message, { parse_mode: "Markdown" });
       }
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         location,
       } = body.message;
       const message = `sijaintisi on *"${
-        (location.longitude, location.latitude)
+        location.longitude + " " + location.latitude
       }"*Jääpanda on nyt auki!`;
       updateGist(
         true,
